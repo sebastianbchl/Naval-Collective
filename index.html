@@ -1,414 +1,1575 @@
 <!doctype html>
+
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#0a0a0a" />
-    <meta
-      name="description"
-      content="The personal portfolio of Sebastian Bachl — ideas, selected directions, and a considered approach to making things."
-    />
 
-    <title>Sebastian Bachl — Personal Portfolio</title>
+<head>
 
-    <link
-      rel="icon"
-      type="image/png"
-      href="assets/sebastian-bachl-logo.png"
-    />
+  <meta charset="UTF-8">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,100..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
+  <title>Naval Collective</title>
 
-    <link rel="stylesheet" href="styles.css" />
-    <script src="script.js" defer></script>
-  </head>
+  <style>
 
-  <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+    :root {
 
-    <div class="page-progress" aria-hidden="true">
-      <span></span>
-    </div>
+      --background: #f5f2e9;
 
-    <header class="site-header" data-header>
-      <a
-        class="brand"
-        href="#top"
-        aria-label="Sebastian Bachl, back to top"
-      >
-        <span class="brand__monogram">SB</span>
-        <span class="brand__name">Sebastian Bachl</span>
-      </a>
+      --surface: #fcfaf4;
 
-      <button
-        class="menu-toggle"
-        type="button"
-        aria-expanded="false"
-        aria-controls="primary-navigation"
-        data-menu-toggle
-      >
-        <span class="menu-toggle__label">Menu</span>
+      --text: #151515;
 
-        <span class="menu-toggle__icon" aria-hidden="true">
-          <i></i>
-          <i></i>
-        </span>
-      </button>
+      --muted: #74716b;
 
-      <nav
-        class="site-nav"
-        id="primary-navigation"
-        aria-label="Primary"
-        data-menu
-      >
-        <a href="#approach"><span>01</span> Approach</a>
-        <a href="#directions"><span>02</span> Directions</a>
-        <a href="#profile"><span>03</span> Profile</a>
-      </nav>
-    </header>
+      --border: rgba(21, 21, 21, 0.18);
 
-    <main id="main">
-      <section class="hero" id="top" aria-labelledby="hero-title">
-        <div class="hero__grid" aria-hidden="true"></div>
-        <div class="hero__wash" aria-hidden="true"></div>
+      --red: #1100ff;
 
-        <div class="hero__copy">
-          <p class="eyebrow reveal">
-            <span class="signal" aria-hidden="true"></span>
-            Personal portfolio / 2026
-          </p>
+    }
 
-          <h1
-            id="hero-title"
-            class="hero__title"
-            aria-label="Make it matter"
-          >
-            <span class="hero__line reveal">Make</span>
-            <span class="hero__line hero__line--outline reveal">it</span>
-            <span class="hero__line hero__line--accent reveal">
-              matter.
-            </span>
-          </h1>
+    html[data-theme="dark"] {
 
-          <p class="hero__intro reveal">
-            A focused home for ideas, selected work, and the thinking
-            behind it.
-          </p>
+      --background: #111210;
 
-          <a class="text-link reveal" href="#approach">
-            Explore the page
-            <span class="text-link__arrow" aria-hidden="true">↘</span>
-          </a>
+      --surface: #191a17;
+
+      --text: #f5f2e9;
+
+      --muted: #aaa8a0;
+
+      --border: rgba(245, 242, 233, 0.18);
+
+      --red: #1100ff;
+
+    }
+
+    * {
+
+      box-sizing: border-box;
+
+    }
+
+    html {
+
+      scroll-behavior: smooth;
+
+    }
+
+    body {
+
+      margin: 0;
+
+      overflow-x: hidden;
+
+      color: var(--text);
+
+      background: var(--background);
+
+      font-family: Arial, Helvetica, sans-serif;
+
+      transition: color 0.25s, background 0.25s;
+
+    }
+
+    button,
+
+    input,
+
+    select,
+
+    textarea {
+
+      font: inherit;
+
+    }
+
+    header {
+
+      position: fixed;
+
+      inset: 0 0 auto;
+
+      z-index: 20;
+
+      display: grid;
+
+      grid-template-columns: 1fr auto 1fr;
+
+      align-items: center;
+
+      min-height: 68px;
+
+      padding: 12px 5vw;
+
+      border-bottom: 1px solid transparent;
+
+      transition: background 0.25s, border-color 0.25s;
+
+    }
+
+    header.scrolled {
+
+      background: color-mix(in srgb, var(--background) 86%, transparent);
+
+      border-color: var(--border);
+
+      backdrop-filter: blur(18px);
+
+    }
+
+    .brand {
+
+      color: var(--red);
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      line-height: 0.9;
+
+      text-decoration: none;
+
+      text-transform: uppercase;
+
+    }
+
+    nav {
+
+      display: flex;
+
+      gap: 28px;
+
+    }
+
+    nav a {
+
+      color: var(--muted);
+
+      font-family: monospace;
+
+      font-size: 11px;
+
+      letter-spacing: 0.18em;
+
+      text-decoration: none;
+
+      text-transform: uppercase;
+
+    }
+
+    nav a:hover {
+
+      color: var(--red);
+
+    }
+
+    nav .join-link {
+
+      padding: 8px 15px;
+
+      color: var(--text);
+
+      border: 1px solid var(--text);
+
+      border-radius: 999px;
+
+    }
+
+    #theme-toggle {
+
+      justify-self: end;
+
+      width: 40px;
+
+      height: 40px;
+
+      color: var(--text);
+
+      background: transparent;
+
+      border: 0;
+
+      cursor: pointer;
+
+      font-size: 18px;
+
+    }
+
+    .hero {
+
+      position: relative;
+
+      height: 180vh;
+
+    }
+
+    .hero-sticky {
+
+      position: sticky;
+
+      top: 0;
+
+      height: 100vh;
+
+      min-height: 600px;
+
+      overflow: hidden;
+
+    }
+
+    #art {
+
+      position: absolute;
+
+      inset: 0;
+
+      width: 100%;
+
+      height: 100%;
+
+      cursor: grab;
+
+      touch-action: pan-y;
+
+    }
+
+    #art:active {
+
+      cursor: grabbing;
+
+    }
+
+    .hero-copy {
+
+      position: absolute;
+
+      right: 20px;
+
+      bottom: 75px;
+
+      left: 20px;
+
+      text-align: center;
+
+      pointer-events: none;
+
+    }
+
+    .hero-copy h1 {
+
+      margin: 0;
+
+      font-size: clamp(60px, 9vw, 100px);
+
+      font-weight: 600;
+
+      line-height: 0.78;
+
+      letter-spacing: -0.08em;
+
+    }
+
+    .hero-copy h1 span {
+
+      color: var(--red);
+
+    }
+
+    .eyebrow {
+
+      color: var(--red);
+
+      font-family: monospace;
+
+      font-size: 11px;
+
+      letter-spacing: 0.28em;
+
+      text-transform: uppercase;
+
+    }
+
+    .instruction {
+
+      position: absolute;
+
+      bottom: 22px;
+
+      left: 50%;
+
+      margin: 0;
+
+      color: var(--red);
+
+      font-family: monospace;
+
+      font-size: 10px;
+
+      letter-spacing: 0.2em;
+
+      text-transform: uppercase;
+
+      transform: translateX(-50%);
+
+      white-space: nowrap;
+
+    }
+
+    section.content {
+
+      width: min(1100px, calc(100% - 40px));
+
+      margin: auto;
+
+      padding: 110px 0;
+
+      scroll-margin-top: 60px;
+
+    }
+
+    .section-title {
+
+      max-width: 750px;
+
+      margin: 0 auto 60px;
+
+      text-align: center;
+
+    }
+
+    .section-title h2 {
+
+      margin: 15px 0;
+
+      font-size: clamp(42px, 6vw, 80px);
+
+      font-weight: 600;
+
+      line-height: 1;
+
+      letter-spacing: -0.06em;
+
+    }
+
+    .section-title h2 em {
+
+      color: var(--red);
+
+      font-style: normal;
+
+    }
+
+    .section-title > p:last-child {
+
+      color: var(--muted);
+
+      font-size: 17px;
+
+      line-height: 1.7;
+
+    }
+
+    .cards {
+
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      border-top: 1px solid var(--border);
+
+      border-bottom: 1px solid var(--border);
+
+    }
+
+    .card {
+
+      min-height: 290px;
+
+      padding: 32px;
+
+      border-right: 1px solid var(--border);
+
+      transition: color 0.25s, background 0.25s;
+
+    }
+
+    .card:last-child {
+
+      border-right: 0;
+
+    }
+
+    .card:hover {
+
+      color: var(--background);
+
+      background: var(--text);
+
+    }
+
+    .card span {
+
+      color: var(--red);
+
+      font-family: monospace;
+
+    }
+
+    .card h3 {
+
+      margin-top: 70px;
+
+      font-size: 26px;
+
+    }
+
+    .card p {
+
+      color: var(--muted);
+
+      line-height: 1.6;
+
+    }
+
+    .project-grid {
+
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 15px;
+
+    }
+
+    .project {
+
+      min-height: 320px;
+
+      padding: 35px;
+
+      background: var(--surface);
+
+      border: 1px solid var(--border);
+
+      transition: transform 0.25s, border-color 0.25s;
+
+    }
+
+    .project:hover {
+
+      border-color: var(--red);
+
+      transform: translateY(-6px);
+
+    }
+
+    .project small {
+
+      color: var(--red);
+
+      font-family: monospace;
+
+    }
+
+    .project h3 {
+
+      margin-top: 100px;
+
+      font-size: 34px;
+
+    }
+
+    .project p {
+
+      color: var(--muted);
+
+      line-height: 1.6;
+
+    }
+
+    .roles {
+
+      border-top: 1px solid var(--border);
+
+    }
+
+    .role {
+
+      display: grid;
+
+      grid-template-columns: 55px 1fr 1.4fr auto;
+
+      gap: 25px;
+
+      align-items: center;
+
+      width: 100%;
+
+      min-height: 130px;
+
+      padding: 25px 10px;
+
+      color: var(--text);
+
+      background: transparent;
+
+      border: 0;
+
+      border-bottom: 1px solid var(--border);
+
+      text-align: left;
+
+      cursor: pointer;
+
+    }
+
+    .role:hover {
+
+      color: var(--background);
+
+      background: var(--text);
+
+    }
+
+    .role-number {
+
+      color: var(--red);
+
+      font-family: monospace;
+
+    }
+
+    .role-description {
+
+      color: var(--muted);
+
+      line-height: 1.5;
+
+    }
+
+    .role-team {
+
+      padding: 7px 10px;
+
+      border: 1px solid currentColor;
+
+      border-radius: 999px;
+
+      font-family: monospace;
+
+      font-size: 11px;
+
+      text-transform: uppercase;
+
+    }
+
+    form {
+
+      display: grid;
+
+      gap: 24px;
+
+      max-width: 760px;
+
+      margin: auto;
+
+      padding: clamp(25px, 5vw, 50px);
+
+      background: var(--surface);
+
+      border: 1px solid var(--border);
+
+    }
+
+    .form-row {
+
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 20px;
+
+    }
+
+    label {
+
+      display: grid;
+
+      gap: 8px;
+
+      font-family: monospace;
+
+      font-size: 12px;
+
+      letter-spacing: 0.08em;
+
+      text-transform: uppercase;
+
+    }
+
+    input,
+
+    select,
+
+    textarea {
+
+      width: 100%;
+
+      padding: 14px;
+
+      color: var(--text);
+
+      background: var(--background);
+
+      border: 1px solid var(--border);
+
+      outline: none;
+
+    }
+
+    textarea {
+
+      min-height: 130px;
+
+      resize: vertical;
+
+    }
+
+    input:focus,
+
+    select:focus,
+
+    textarea:focus {
+
+      border-color: var(--red);
+
+    }
+
+    form button {
+
+      min-height: 55px;
+
+      color: white;
+
+      background: var(--red);
+
+      border: 1px solid var(--red);
+
+      cursor: pointer;
+
+    }
+
+    #form-message {
+
+      min-height: 22px;
+
+      margin: 0;
+
+      color: var(--red);
+
+      text-align: center;
+
+    }
+
+    details {
+
+      max-width: 800px;
+
+      margin: auto;
+
+      border-top: 1px solid var(--border);
+
+    }
+
+    details:last-child {
+
+      border-bottom: 1px solid var(--border);
+
+    }
+
+    summary {
+
+      padding: 24px 5px;
+
+      cursor: pointer;
+
+      font-size: 18px;
+
+      font-weight: 600;
+
+    }
+
+    details p {
+
+      padding: 0 20px 24px;
+
+      color: var(--muted);
+
+      line-height: 1.7;
+
+    }
+
+    footer {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      width: min(1100px, calc(100% - 40px));
+
+      margin: auto;
+
+      padding: 28px 0;
+
+      color: var(--muted);
+
+      border-top: 1px solid var(--border);
+
+      font-family: monospace;
+
+      font-size: 11px;
+
+      text-transform: uppercase;
+
+    }
+
+    @media (max-width: 800px) {
+
+      header {
+
+        grid-template-columns: 1fr auto;
+
+      }
+
+      nav {
+
+        display: none;
+
+      }
+
+      .cards,
+
+      .project-grid,
+
+      .form-row {
+
+        grid-template-columns: 1fr;
+
+      }
+
+      .card {
+
+        border-right: 0;
+
+        border-bottom: 1px solid var(--border);
+
+      }
+
+      .role {
+
+        grid-template-columns: 40px 1fr;
+
+      }
+
+      .role-description,
+
+      .role-team {
+
+        grid-column: 2;
+
+      }
+
+      .role-team {
+
+        justify-self: start;
+
+      }
+
+      footer {
+
+        flex-direction: column;
+
+        gap: 10px;
+
+      }
+
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      html {
+
+        scroll-behavior: auto;
+
+      }
+
+      .hero {
+
+        height: 100vh;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <header id="header">
+
+    <a class="brand" href="#top">Naval<br>Collective</a>
+
+    <nav>
+
+      <a href="#about">About</a>
+
+      <a href="#projects">Projects</a>
+
+      <a href="#roles">Roles</a>
+
+      <a class="join-link" href="#join">Join</a>
+
+      <a href="#faq">FAQ</a>
+
+    </nav>
+
+    <button id="theme-toggle" type="button" aria-label="Toggle color theme">☾</button>
+
+  </header>
+
+  <main>
+
+    <section class="hero" id="top">
+
+      <div class="hero-sticky">
+
+        <canvas id="art" aria-hidden="true"></canvas>
+
+        <div class="hero-copy" id="hero-copy">
+
+          <h1>Naval<span>Collective</span></h1>
+
+          <p class="eyebrow">Stockholm · Founded 2026</p>
+
         </div>
 
-        <figure
-          class="hero-mark reveal"
-          data-parallax
-          aria-label="Sebastian Bachl logo"
-        >
-          <span
-            class="hero-mark__orbit hero-mark__orbit--outer"
-            aria-hidden="true"
-          ></span>
+        <p class="instruction" id="instruction">
 
-          <span
-            class="hero-mark__orbit hero-mark__orbit--inner"
-            aria-hidden="true"
-          ></span>
+          Drag to rotate · Scroll to enter
 
-          <span
-            class="hero-mark__axis hero-mark__axis--x"
-            aria-hidden="true"
-          ></span>
+        </p>
 
-          <span
-            class="hero-mark__axis hero-mark__axis--y"
-            aria-hidden="true"
-          ></span>
-
-          <div class="hero-mark__disc">
-            <img
-              src="assets/sebastian-bachl-logo.png"
-              alt="Sebastian Bachl signature logo"
-              width="1535"
-              height="2048"
-            />
-          </div>
-
-          <figcaption>Original mark / S.B.</figcaption>
-        </figure>
-
-        <div class="hero__footer reveal">
-          <span>Independent identity</span>
-          <span>Scroll to discover</span>
-          <span>Vol. 01</span>
-        </div>
-      </section>
-
-      <div
-        class="ticker"
-        aria-label="Sebastian Bachl — clarity, character, momentum"
-      >
-        <div class="ticker__track" aria-hidden="true">
-          <span>Sebastian Bachl</span>
-          <i>✦</i>
-          <span>Clarity</span>
-          <i>✦</i>
-          <span>Character</span>
-          <i>✦</i>
-          <span>Momentum</span>
-          <i>✦</i>
-
-          <span>Sebastian Bachl</span>
-          <i>✦</i>
-          <span>Clarity</span>
-          <i>✦</i>
-          <span>Character</span>
-          <i>✦</i>
-          <span>Momentum</span>
-          <i>✦</i>
-        </div>
       </div>
 
-      <section
-        class="approach section-light"
-        id="approach"
-        aria-labelledby="approach-title"
-      >
-        <div class="section-shell">
-          <header class="section-heading reveal">
-            <p class="section-index">01 / Approach</p>
-            <p class="section-meta">
-              Principles for considered work
-            </p>
-          </header>
+    </section>
 
-          <div class="approach__statement">
-            <h2
-              id="approach-title"
-              class="display-title reveal"
-            >
-              Less noise.<br />
-              <span>More signal.</span>
-            </h2>
+    <section class="content" id="about">
 
-            <p class="approach__lead reveal">
-              A strong idea should feel clear at first glance and
-              reveal more on closer inspection. The best outcomes
-              balance restraint with a point of view.
-            </p>
-          </div>
+      <div class="section-title">
 
-          <ol class="principles">
-            <li class="principle reveal">
-              <span class="principle__number">01</span>
+        <p class="eyebrow">About</p>
 
-              <div>
-                <h3>Clarity</h3>
-                <p>
-                  Reduce the idea to what matters, then make that part
-                  impossible to miss.
-                </p>
-              </div>
+        <h2>A collective for people who <em>make things move.</em></h2>
 
-              <span class="principle__mark" aria-hidden="true">C</span>
-            </li>
+        <p>
 
-            <li class="principle reveal">
-              <span class="principle__number">02</span>
+          A naval engineering collective developing vessels and systems for maritime applications.
 
-              <div>
-                <h3>Character</h3>
-                <p>
-                  Build a recognisable voice through proportion,
-                  rhythm, contrast, and detail.
-                </p>
-              </div>
+        </p>
 
-              <span class="principle__mark" aria-hidden="true">C</span>
-            </li>
+      </div>
 
-            <li class="principle reveal">
-              <span class="principle__number">03</span>
+      <div class="cards">
 
-              <div>
-                <h3>Momentum</h3>
-                <p>
-                  Turn considered decisions into movement, progress,
-                  and a finished result.
-                </p>
-              </div>
+        <article class="card">
 
-              <span class="principle__mark" aria-hidden="true">M</span>
-            </li>
-          </ol>
-        </div>
-      </section>
+          <span>01</span>
 
-      <section
-        class="directions section-dark"
-        id="directions"
-        aria-labelledby="directions-title"
-      >
-        <div class="section-shell">
-          <header
-            class="section-heading section-heading--dark reveal"
-          >
-            <p class="section-index">02 / Directions</p>
-            <p class="section-meta">
-              A flexible frame for selected work
-            </p>
-          </header>
+          <h3>Build</h3>
 
-          <div class="directions__intro">
-            <h2
-              id="directions-title"
-              class="display-title display-title--light reveal"
-            >
-              Built to hold<br />
-              <span>the good stuff.</span>
-            </h2>
-          </div>
+          <p>Develop real hardware, software, control systems, and intelligent machines.</p>
 
-          <div class="direction-list">
-            <article class="direction reveal">
-              <span class="direction__number">01</span>
+        </article>
 
-              <h3>Identity systems</h3>
+        <article class="card">
 
-              <p>
-                Positioning, visual language, and the details that make
-                an idea recognisable.
-              </p>
+          <span>02</span>
 
-              <span class="direction__arrow" aria-hidden="true">
-                ↗
-              </span>
-            </article>
+          <h3>Compete</h3>
 
-            <article class="direction reveal">
-              <span class="direction__number">02</span>
+          <p>Test your engineering work in demonstrations, challenges, and competitions.</p>
 
-              <h3>Digital experiences</h3>
+        </article>
 
-              <p>
-                Clear, expressive web experiences shaped around people
-                and purpose.
-              </p>
+        <article class="card">
 
-              <span class="direction__arrow" aria-hidden="true">
-                ↗
-              </span>
-            </article>
+          <span>03</span>
 
-            <article class="direction reveal">
-              <span class="direction__number">03</span>
+          <h3>Connect</h3>
 
-              <h3>Creative direction</h3>
+          <p>Learn alongside students, researchers, founders, and industry partners.</p>
 
-              <p>
-                A coherent point of view carried from the first
-                decision to the final detail.
-              </p>
+        </article>
 
-              <span class="direction__arrow" aria-hidden="true">
-                ↗
-              </span>
-            </article>
-          </div>
-        </div>
-      </section>
+      </div>
 
-      <section
-        class="profile"
-        id="profile"
-        aria-labelledby="profile-title"
-      >
-        <div class="profile__visual reveal">
-          <div class="profile__logo-frame">
-            <img
-              src="assets/sebastian-bachl-logo.png"
-              alt="Sebastian Bachl signature and wordmark"
-              width="1535"
-              height="2048"
-              loading="lazy"
-            />
-          </div>
+    </section>
 
-          <span class="profile__caption">
-            The signature / 001
-          </span>
-        </div>
+    <section class="content" id="projects">
 
-        <div class="profile__content">
-          <p class="section-index reveal">03 / Profile</p>
+      <div class="section-title">
 
-          <h2 id="profile-title" class="profile__title reveal">
-            A distinct mark.<br />
-            A flexible canvas.
-          </h2>
+        <p class="eyebrow">Projects</p>
 
-          <p class="profile__copy reveal">
-            This first edition keeps the story deliberately concise.
-            It is ready to expand with real projects, a personal
-            biography, and the links that matter most.
-          </p>
+        <h2>What we <em>build.</em></h2>
 
-          <div
-            class="profile__facts reveal"
-            aria-label="Portfolio details"
-          >
-            <span>
-              <small>Format</small>
-              Single-page portfolio
-            </span>
+      </div>
 
-            <span>
-              <small>Mode</small>
-              Responsive / interactive
-            </span>
+      <div class="project-grid">
 
-            <span>
-              <small>Edition</small>
-              September 2026
-            </span>
-          </div>
-        </div>
-      </section>
+        <article class="project">
 
-      <section
-        class="closing"
-        aria-labelledby="closing-title"
-      >
-        <div class="closing__topline reveal">
-          <span>End of index</span>
-          <span>Start of what comes next</span>
+          <small>01 / 04</small>
+
+          <h3>Atlas Cell</h3>
+
+          <p>A dual-arm robotic workcell that learns manipulation tasks from demonstrations.</p>
+
+        </article>
+
+        <article class="project">
+
+          <small>02 / 04</small>
+
+          <h3>Pelagic</h3>
+
+          <p>An autonomous underwater vehicle for mapping and marine inspection.</p>
+
+        </article>
+
+        <article class="project">
+
+          <small>03 / 04</small>
+
+          <h3>Field Unit</h3>
+
+          <p>A modular rover combining navigation, perception, and resilient control.</p>
+
+        </article>
+
+        <article class="project">
+
+          <small>04 / 04</small>
+
+          <h3>Motion Stack</h3>
+
+          <p>Shared simulation, training, tracking, and robot deployment infrastructure.</p>
+
+        </article>
+
+      </div>
+
+    </section>
+
+    <section class="content" id="roles">
+
+      <div class="section-title">
+
+        <p class="eyebrow">Roles</p>
+
+        <h2>Find your <em>place.</em></h2>
+
+        <p>Click a role to prefill the application.</p>
+
+      </div>
+
+      <div class="roles">
+
+        <button class="role" data-role="Robotics Engineer">
+
+          <span class="role-number">01</span>
+
+          <strong>Robotics Engineer</strong>
+
+          <span class="role-description">Integrate mechanics, sensing, and control.</span>
+
+          <span class="role-team">Engineering</span>
+
+        </button>
+
+        <button class="role" data-role="ML Engineer">
+
+          <span class="role-number">02</span>
+
+          <strong>ML Engineer</strong>
+
+          <span class="role-description">Build perception and learning systems for robots.</span>
+
+          <span class="role-team">Engineering</span>
+
+        </button>
+
+        <button class="role" data-role="Partnerships Lead">
+
+          <span class="role-number">03</span>
+
+          <strong>Partnerships Lead</strong>
+
+          <span class="role-description">Build relationships with companies and laboratories.</span>
+
+          <span class="role-team">Operations</span>
+
+        </button>
+
+      </div>
+
+    </section>
+
+    <section class="content" id="join">
+
+      <div class="section-title">
+
+        <p class="eyebrow">Join</p>
+
+        <h2>Build with <em>us.</em></h2>
+
+      </div>
+
+      <form id="application-form">
+
+        <div class="form-row">
+
+          <label>
+
+            Full name
+
+            <input name="name" required placeholder="Your name">
+
+          </label>
+
+          <label>
+
+            Email
+
+            <input name="email" type="email" required placeholder="you@example.com">
+
+          </label>
+
         </div>
 
-        <h2 id="closing-title" class="closing__title reveal">
-          Ready for<br />
-          <span>the next chapter.</span>
-        </h2>
+        <label>
 
-        <a class="closing__button reveal" href="#top">
-          <span>Back to the top</span>
-          <span aria-hidden="true">↑</span>
-        </a>
-      </section>
-    </main>
+          Preferred role
 
-    <footer class="site-footer">
-      <span>
-        © <span data-year>2026</span> Sebastian Bachl
-      </span>
+          <select name="role" id="role-select" required>
 
-      <span>Personal portfolio / Edition 01</span>
-    </footer>
-  </body>
+            <option value="">Choose a role…</option>
+
+            <option>Robotics Engineer</option>
+
+            <option>ML Engineer</option>
+
+            <option>Partnerships Lead</option>
+
+          </select>
+
+        </label>
+
+        <label>
+
+          Why do you want to join?
+
+          <textarea name="motivation" required minlength="20"></textarea>
+
+        </label>
+
+        <button type="submit">Submit application</button>
+
+        <p id="form-message" role="status"></p>
+
+      </form>
+
+    </section>
+
+    <section class="content" id="faq">
+
+      <div class="section-title">
+
+        <p class="eyebrow">FAQ</p>
+
+        <h2>Questions, <em>answered.</em></h2>
+
+      </div>
+
+      <details>
+
+        <summary>Do I need previous robotics experience?</summary>
+
+        <p>No. Curiosity and commitment matter more than previous experience.</p>
+
+      </details>
+
+      <details>
+
+        <summary>How much time should I commit?</summary>
+
+        <p>Most members attend one build session and contribute flexible project time each week.</p>
+
+      </details>
+
+      <details>
+
+        <summary>Can non-engineers join?</summary>
+
+        <p>Yes. Communications, operations, partnerships, events, and documentation are also important.</p>
+
+      </details>
+
+    </section>
+
+  </main>
+
+  <footer>
+
+    <span>Naval Collective</span>
+
+    <span>Built to move · 2026</span>
+
+  </footer>
+
+  <script>
+
+    const root = document.documentElement;
+
+    const hero = document.querySelector(".hero");
+
+    const canvas = document.querySelector("#art");
+
+    const ctx = canvas.getContext("2d");
+
+    const heroCopy = document.querySelector("#hero-copy");
+
+    const instruction = document.querySelector("#instruction");
+
+    const header = document.querySelector("#header");
+
+    const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
+
+    const clamp = (value, min = 0, max = 1) =>
+
+      Math.min(max, Math.max(min, value));
+
+    const smoothstep = (start, end, value) => {
+
+      const x = clamp((value - start) / (end - start));
+
+      return x * x * (3 - 2 * x);
+
+    };
+
+    // Dark-mode control
+
+    const savedTheme = localStorage.getItem("naval-theme");
+
+    if (savedTheme === "dark") {
+
+      root.dataset.theme = "dark";
+
+    }
+
+    document.querySelector("#theme-toggle").addEventListener("click", () => {
+
+      const dark = root.dataset.theme === "dark";
+
+      root.dataset.theme = dark ? "light" : "dark";
+
+      localStorage.setItem("naval-theme", root.dataset.theme);
+
+    });
+
+    // Scroll-controlled hero
+
+    let heroProgress = 0;
+
+    function updateScroll() {
+
+      const distance = Math.max(1, hero.offsetHeight - innerHeight);
+
+      heroProgress = reduceMotion.matches
+
+        ? 0
+
+        : clamp(-hero.getBoundingClientRect().top / distance);
+
+      heroCopy.style.opacity =
+
+        1 - smoothstep(0.08, 0.38, heroProgress);
+
+      heroCopy.style.transform =
+
+        `translateY(${-heroProgress * 35}px)`;
+
+      instruction.style.opacity =
+
+        1 - smoothstep(0.02, 0.20, heroProgress);
+
+      header.classList.toggle(
+
+        "scrolled",
+
+        scrollY > innerHeight * 0.55
+
+      );
+
+    }
+
+    addEventListener("scroll", updateScroll, { passive: true });
+
+    addEventListener("resize", updateScroll);
+
+    updateScroll();
+
+    // Role-to-form prefilling
+
+    const roleSelect = document.querySelector("#role-select");
+
+    document.querySelectorAll("[data-role]").forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        roleSelect.value = button.dataset.role;
+
+        document.querySelector("#join").scrollIntoView({
+
+          behavior: reduceMotion.matches ? "auto" : "smooth"
+
+        });
+
+        setTimeout(() => roleSelect.focus(), 600);
+
+      });
+
+    });
+
+    // Demo form behavior
+
+    document
+
+      .querySelector("#application-form")
+
+      .addEventListener("submit", event => {
+
+        event.preventDefault();
+
+        if (!event.currentTarget.checkValidity()) {
+
+          event.currentTarget.reportValidity();
+
+          return;
+
+        }
+
+        document.querySelector("#form-message").textContent =
+
+          "Demo complete. Connect this form to your own server or form service.";
+
+      });
+
+    // Turning five-blade propeller trail
+    // Change these values first when you want to tune the animation.
+    const SETTINGS = Object.freeze({
+      bladeCount: 4,
+      hubRadius: 0.22,
+      bladeLength: 2.55,
+      bladeWidth: 0.40,
+      bladeSweep: 0.80,
+      bladePitch: 0.30,
+      tracingSpeed: 0.001,
+      propellerSpeed: 0.0003,
+      chaosAmount: 0.55,
+      sampleInterval: 10,
+      maxTrailPoints: innerWidth < 700 ? 3000 : 5200,
+      brightTrailPoints: innerWidth < 700 ? 260 : 520,
+      lineColor: "17, 0, 255"
+    });
+
+    const TAU = Math.PI * 2;
+    const trail = [];
+    const projectedX = new Float32Array(SETTINGS.maxTrailPoints + 2);
+    const projectedY = new Float32Array(SETTINGS.maxTrailPoints + 2);
+
+    let pathPosition = 0;
+    let propellerAngle = Math.PI / 6;
+    let drawingClock = 0;
+    let sampleAccumulator = 0;
+    let width = 1;
+    let height = 1;
+    let rotationX = 0 ;
+    let rotationY = 0;
+    let targetX = 0;
+    let targetY = 0;
+    let dragging = false;
+    let previousX = 0;
+    let previousY = 0;
+    let previousTime = performance.now();
+
+    function createTrailPoint(deltaTime) {
+      pathPosition += deltaTime * SETTINGS.tracingSpeed;
+      propellerAngle += deltaTime * SETTINGS.propellerSpeed;
+      drawingClock += deltaTime * 0.001;
+
+      const bladeStep = Math.floor(pathPosition);
+      const bladeIndex = bladeStep % SETTINGS.bladeCount;
+      const u = pathPosition - bladeStep;
+      const envelope = Math.max(0, Math.sin(Math.PI * u));
+      const bladeProfile = Math.pow(envelope, 0.60);
+      const rootGate = Math.pow(envelope, 0.42);
+      const side = Math.sin(TAU * u);
+
+      // Both edges meet at the rounded root and rounded blade tip.
+      let radius =
+        rootGate *
+        (SETTINGS.hubRadius + SETTINGS.bladeLength * bladeProfile);
+
+      let angle =
+        propellerAngle +
+        bladeIndex * (TAU / SETTINGS.bladeCount) +
+        SETTINGS.bladeSweep * Math.pow(bladeProfile, 1.35) +
+        SETTINGS.bladeWidth * side * (0.18 + 0.82 * bladeProfile);
+
+      // Layered, deterministic wobble keeps the wake lively without
+      // destroying the recognizable propeller silhouette.
+      const chaos = SETTINGS.chaosAmount;
+      const waveA = Math.sin(drawingClock * 2.17 + Math.sin(drawingClock * 0.43));
+      const waveB = Math.sin(drawingClock * 5.31 + bladeIndex * 1.73);
+      const waveC = Math.cos(drawingClock * 8.07 - u * 7.4);
+
+      radius *= 1 + chaos * (0.30 * waveA + 0.16 * waveB);
+      angle += chaos * (0.22 * waveB + 0.09 * waveC);
+
+      const depth =
+        SETTINGS.bladePitch * radius * Math.cos(Math.PI * u) +
+        chaos * 0.22 * waveA * envelope;
+
+      return [
+        Math.cos(angle) * radius,
+        Math.sin(angle) * radius,
+        depth
+      ];
+    }
+
+    function addTrailSample(deltaTime = SETTINGS.sampleInterval) {
+      trail.push(createTrailPoint(deltaTime));
+
+      if (trail.length > SETTINGS.maxTrailPoints) {
+        trail.shift();
+      }
+    }
+
+    // Begin with a complete layered wake instead of an empty canvas.
+    const initialPoints = innerWidth < 700 ? 2400 : 4300;
+    for (let i = 0; i < initialPoints; i++) {
+      addTrailSample();
+    }
+
+    function resizeCanvas() {
+      const rectangle = canvas.getBoundingClientRect();
+      const ratio = Math.min(devicePixelRatio || 1, 2);
+
+      width = rectangle.width;
+      height = rectangle.height;
+      canvas.width = Math.round(width * ratio);
+      canvas.height = Math.round(height * ratio);
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+      // These two settings round every visible part of every stroke.
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+    }
+
+    function projectTrail(scale, centerX, centerY) {
+      const perspective = 7.5;
+      const cosineY = Math.cos(rotationY);
+      const sineY = Math.sin(rotationY);
+      const cosineX = Math.cos(rotationX);
+      const sineX = Math.sin(rotationX);
+
+      trail.forEach((point, index) => {
+        const rotatedX = point[0] * cosineY - point[2] * sineY;
+        const rotatedZ = point[0] * sineY + point[2] * cosineY;
+        const finalY = point[1] * cosineX - rotatedZ * sineX;
+        const finalZ = point[1] * sineX + rotatedZ * cosineX;
+        const projection = perspective / (perspective + finalZ * 0.55);
+
+        projectedX[index] = centerX + rotatedX * scale * projection;
+        projectedY[index] = centerY + finalY * scale * projection;
+      });
+    }
+
+    // A midpoint quadratic curve removes the last small polygonal corners.
+    function traceRoundedPath(startIndex, endIndex) {
+      if (endIndex - startIndex < 2) return false;
+
+      ctx.beginPath();
+      ctx.moveTo(projectedX[startIndex], projectedY[startIndex]);
+
+      for (let i = startIndex + 1; i < endIndex - 1; i++) {
+        const middleX = (projectedX[i] + projectedX[i + 1]) * 0.5;
+        const middleY = (projectedY[i] + projectedY[i + 1]) * 0.5;
+
+        ctx.quadraticCurveTo(
+          projectedX[i],
+          projectedY[i],
+          middleX,
+          middleY
+        );
+      }
+
+      ctx.lineTo(projectedX[endIndex - 1], projectedY[endIndex - 1]);
+      return true;
+    }
+
+    function draw(time) {
+      const elapsed = Math.min(40, Math.max(0, time - previousTime));
+      previousTime = time;
+
+      if (!reduceMotion.matches) {
+        sampleAccumulator += elapsed;
+
+        while (sampleAccumulator >= SETTINGS.sampleInterval) {
+          addTrailSample();
+          sampleAccumulator -= SETTINGS.sampleInterval;
+        }
+
+        if (!dragging) {
+          targetY += elapsed * 0.000018;
+        }
+      }
+
+      rotationX += (targetX - rotationX) * 0.075;
+      rotationY += (targetY - rotationY) * 0.075;
+
+      ctx.clearRect(0, 0, width, height);
+
+      const opacity = 1 - smoothstep(0.76, 1, heroProgress);
+      const scale =
+        Math.min(width, height) *
+        0.135 *
+        (1 + heroProgress * 4.8);
+      const centerX = width * 0.5;
+      const centerY = height * 0.37;
+      const color = SETTINGS.lineColor;
+
+      projectTrail(scale, centerX, centerY);
+
+      ctx.save();
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+
+      // Older history is split into softly fading layers.
+      const historyEnd = Math.max(
+        2,
+        trail.length - SETTINGS.brightTrailPoints
+      );
+      const chunkSize = 240;
+
+      for (let start = 0; start < historyEnd - 1; start += chunkSize - 1) {
+        const end = Math.min(historyEnd, start + chunkSize);
+        const age = end / historyEnd;
+
+        if (traceRoundedPath(start, end)) {
+          ctx.strokeStyle = `rgba(${color}, ${(0.025 + age * 0.15) * opacity})`;
+          ctx.lineWidth = 0.55 + age * 0.35;
+          ctx.stroke();
+        }
+      }
+
+      // The newest part is brighter, so the moving point visibly draws it.
+      const brightStart = Math.max(0, trail.length - SETTINGS.brightTrailPoints);
+
+      if (traceRoundedPath(brightStart, trail.length)) {
+        ctx.strokeStyle = `rgba(${color}, ${0.82 * opacity})`;
+        ctx.lineWidth = 1.55;
+        ctx.shadowColor = `rgba(${color}, ${0.30 * opacity})`;
+        ctx.shadowBlur = 7;
+        ctx.stroke();
+      }
+
+      const head = trail.length - 1;
+      if (head >= 0) {
+        ctx.shadowColor = `rgba(${color}, ${0.65 * opacity})`;
+        ctx.shadowBlur = 16;
+        ctx.fillStyle = `rgba(${color}, ${opacity})`;
+        ctx.beginPath();
+        ctx.arc(projectedX[head], projectedY[head], 3.8, 0, TAU);
+        ctx.fill();
+      }
+
+      ctx.restore();
+      requestAnimationFrame(draw);
+    }
+
+    canvas.addEventListener("pointerdown", event => {
+
+      dragging = true;
+
+      previousX = event.clientX;
+
+      previousY = event.clientY;
+
+      canvas.setPointerCapture(event.pointerId);
+
+    });
+
+    canvas.addEventListener("pointermove", event => {
+
+      if (!dragging) return;
+
+      targetY += (event.clientX - previousX) * 0.006;
+
+      targetX = clamp(
+
+        targetX + (event.clientY - previousY) * 0.006,
+
+        -1.2,
+
+        1.2
+
+      );
+
+      previousX = event.clientX;
+
+      previousY = event.clientY;
+
+    });
+
+    function stopDragging(event) {
+
+      dragging = false;
+
+      if (canvas.hasPointerCapture(event.pointerId)) {
+
+        canvas.releasePointerCapture(event.pointerId);
+
+      }
+
+    }
+
+    canvas.addEventListener("pointerup", stopDragging);
+
+    canvas.addEventListener("pointercancel", stopDragging);
+
+    resizeCanvas();
+
+    addEventListener("resize", resizeCanvas);
+
+    requestAnimationFrame(draw);
+
+  </script>
+
+</body>
+
 </html>
