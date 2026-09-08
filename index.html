@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <meta
+      name="description"
+      content="The personal portfolio of Sebastian Bachl — ideas, selected directions, and a considered approach to making things."
+    />
+
+    <title>Sebastian Bachl — Personal Portfolio</title>
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="assets/sebastian-bachl-logo.png"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,100..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="page-progress" aria-hidden="true">
+      <span></span>
+    </div>
+
+    <header class="site-header" data-header>
+      <a
+        class="brand"
+        href="#top"
+        aria-label="Sebastian Bachl, back to top"
+      >
+        <span class="brand__monogram">SB</span>
+        <span class="brand__name">Sebastian Bachl</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="primary-navigation"
+        data-menu-toggle
+      >
+        <span class="menu-toggle__label">Menu</span>
+
+        <span class="menu-toggle__icon" aria-hidden="true">
+          <i></i>
+          <i></i>
+        </span>
+      </button>
+
+      <nav
+        class="site-nav"
+        id="primary-navigation"
+        aria-label="Primary"
+        data-menu
+      >
+        <a href="#approach"><span>01</span> Approach</a>
+        <a href="#directions"><span>02</span> Directions</a>
+        <a href="#profile"><span>03</span> Profile</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero__grid" aria-hidden="true"></div>
+        <div class="hero__wash" aria-hidden="true"></div>
+
+        <div class="hero__copy">
+          <p class="eyebrow reveal">
+            <span class="signal" aria-hidden="true"></span>
+            Personal portfolio / 2026
+          </p>
+
+          <h1
+            id="hero-title"
+            class="hero__title"
+            aria-label="Make it matter"
+          >
+            <span class="hero__line reveal">Make</span>
+            <span class="hero__line hero__line--outline reveal">it</span>
+            <span class="hero__line hero__line--accent reveal">
+              matter.
+            </span>
+          </h1>
+
+          <p class="hero__intro reveal">
+            A focused home for ideas, selected work, and the thinking
+            behind it.
+          </p>
+
+          <a class="text-link reveal" href="#approach">
+            Explore the page
+            <span class="text-link__arrow" aria-hidden="true">↘</span>
+          </a>
+        </div>
+
+        <figure
+          class="hero-mark reveal"
+          data-parallax
+          aria-label="Sebastian Bachl logo"
+        >
+          <span
+            class="hero-mark__orbit hero-mark__orbit--outer"
+            aria-hidden="true"
+          ></span>
+
+          <span
+            class="hero-mark__orbit hero-mark__orbit--inner"
+            aria-hidden="true"
+          ></span>
+
+          <span
+            class="hero-mark__axis hero-mark__axis--x"
+            aria-hidden="true"
+          ></span>
+
+          <span
+            class="hero-mark__axis hero-mark__axis--y"
+            aria-hidden="true"
+          ></span>
+
+          <div class="hero-mark__disc">
+            <img
+              src="assets/sebastian-bachl-logo.png"
+              alt="Sebastian Bachl signature logo"
+              width="1535"
+              height="2048"
+            />
+          </div>
+
+          <figcaption>Original mark / S.B.</figcaption>
+        </figure>
+
+        <div class="hero__footer reveal">
+          <span>Independent identity</span>
+          <span>Scroll to discover</span>
+          <span>Vol. 01</span>
+        </div>
+      </section>
+
+      <div
+        class="ticker"
+        aria-label="Sebastian Bachl — clarity, character, momentum"
+      >
+        <div class="ticker__track" aria-hidden="true">
+          <span>Sebastian Bachl</span>
+          <i>✦</i>
+          <span>Clarity</span>
+          <i>✦</i>
+          <span>Character</span>
+          <i>✦</i>
+          <span>Momentum</span>
+          <i>✦</i>
+
+          <span>Sebastian Bachl</span>
+          <i>✦</i>
+          <span>Clarity</span>
+          <i>✦</i>
+          <span>Character</span>
+          <i>✦</i>
+          <span>Momentum</span>
+          <i>✦</i>
+        </div>
+      </div>
+
+      <section
+        class="approach section-light"
+        id="approach"
+        aria-labelledby="approach-title"
+      >
+        <div class="section-shell">
+          <header class="section-heading reveal">
+            <p class="section-index">01 / Approach</p>
+            <p class="section-meta">
+              Principles for considered work
+            </p>
+          </header>
+
+          <div class="approach__statement">
+            <h2
+              id="approach-title"
+              class="display-title reveal"
+            >
+              Less noise.<br />
+              <span>More signal.</span>
+            </h2>
+
+            <p class="approach__lead reveal">
+              A strong idea should feel clear at first glance and
+              reveal more on closer inspection. The best outcomes
+              balance restraint with a point of view.
+            </p>
+          </div>
+
+          <ol class="principles">
+            <li class="principle reveal">
+              <span class="principle__number">01</span>
+
+              <div>
+                <h3>Clarity</h3>
+                <p>
+                  Reduce the idea to what matters, then make that part
+                  impossible to miss.
+                </p>
+              </div>
+
+              <span class="principle__mark" aria-hidden="true">C</span>
+            </li>
+
+            <li class="principle reveal">
+              <span class="principle__number">02</span>
+
+              <div>
+                <h3>Character</h3>
+                <p>
+                  Build a recognisable voice through proportion,
+                  rhythm, contrast, and detail.
+                </p>
+              </div>
+
+              <span class="principle__mark" aria-hidden="true">C</span>
+            </li>
+
+            <li class="principle reveal">
+              <span class="principle__number">03</span>
+
+              <div>
+                <h3>Momentum</h3>
+                <p>
+                  Turn considered decisions into movement, progress,
+                  and a finished result.
+                </p>
+              </div>
+
+              <span class="principle__mark" aria-hidden="true">M</span>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section
+        class="directions section-dark"
+        id="directions"
+        aria-labelledby="directions-title"
+      >
+        <div class="section-shell">
+          <header
+            class="section-heading section-heading--dark reveal"
+          >
+            <p class="section-index">02 / Directions</p>
+            <p class="section-meta">
+              A flexible frame for selected work
+            </p>
+          </header>
+
+          <div class="directions__intro">
+            <h2
+              id="directions-title"
+              class="display-title display-title--light reveal"
+            >
+              Built to hold<br />
+              <span>the good stuff.</span>
+            </h2>
+          </div>
+
+          <div class="direction-list">
+            <article class="direction reveal">
+              <span class="direction__number">01</span>
+
+              <h3>Identity systems</h3>
+
+              <p>
+                Positioning, visual language, and the details that make
+                an idea recognisable.
+              </p>
+
+              <span class="direction__arrow" aria-hidden="true">
+                ↗
+              </span>
+            </article>
+
+            <article class="direction reveal">
+              <span class="direction__number">02</span>
+
+              <h3>Digital experiences</h3>
+
+              <p>
+                Clear, expressive web experiences shaped around people
+                and purpose.
+              </p>
+
+              <span class="direction__arrow" aria-hidden="true">
+                ↗
+              </span>
+            </article>
+
+            <article class="direction reveal">
+              <span class="direction__number">03</span>
+
+              <h3>Creative direction</h3>
+
+              <p>
+                A coherent point of view carried from the first
+                decision to the final detail.
+              </p>
+
+              <span class="direction__arrow" aria-hidden="true">
+                ↗
+              </span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="profile"
+        id="profile"
+        aria-labelledby="profile-title"
+      >
+        <div class="profile__visual reveal">
+          <div class="profile__logo-frame">
+            <img
+              src="assets/sebastian-bachl-logo.png"
+              alt="Sebastian Bachl signature and wordmark"
+              width="1535"
+              height="2048"
+              loading="lazy"
+            />
+          </div>
+
+          <span class="profile__caption">
+            The signature / 001
+          </span>
+        </div>
+
+        <div class="profile__content">
+          <p class="section-index reveal">03 / Profile</p>
+
+          <h2 id="profile-title" class="profile__title reveal">
+            A distinct mark.<br />
+            A flexible canvas.
+          </h2>
+
+          <p class="profile__copy reveal">
+            This first edition keeps the story deliberately concise.
+            It is ready to expand with real projects, a personal
+            biography, and the links that matter most.
+          </p>
+
+          <div
+            class="profile__facts reveal"
+            aria-label="Portfolio details"
+          >
+            <span>
+              <small>Format</small>
+              Single-page portfolio
+            </span>
+
+            <span>
+              <small>Mode</small>
+              Responsive / interactive
+            </span>
+
+            <span>
+              <small>Edition</small>
+              September 2026
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="closing"
+        aria-labelledby="closing-title"
+      >
+        <div class="closing__topline reveal">
+          <span>End of index</span>
+          <span>Start of what comes next</span>
+        </div>
+
+        <h2 id="closing-title" class="closing__title reveal">
+          Ready for<br />
+          <span>the next chapter.</span>
+        </h2>
+
+        <a class="closing__button reveal" href="#top">
+          <span>Back to the top</span>
+          <span aria-hidden="true">↑</span>
+        </a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>
+        © <span data-year>2026</span> Sebastian Bachl
+      </span>
+
+      <span>Personal portfolio / Edition 01</span>
+    </footer>
+  </body>
+</html>
