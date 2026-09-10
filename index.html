@@ -8,7 +8,9 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Naval Collective</title>
+  <title>Naval Collective — Naval Architecture & Marine Design</title>
+
+  <meta name="description" content="A Stockholm-based collective for naval architects developing vessels, yachts, and marine systems.">
 
   <style>
 
@@ -138,6 +140,8 @@
 
       display: flex;
 
+      align-items: center;
+
       gap: 28px;
 
     }
@@ -166,13 +170,117 @@
 
     nav .join-link {
 
-      padding: 8px 15px;
+      position: relative;
+
+      isolation: isolate;
+
+      display: inline-grid;
+
+      place-items: center;
+
+      min-width: 86px;
+
+      min-height: 34px;
+
+      padding: 0 18px 0 20px;
 
       color: var(--text);
 
-      border: 1px solid var(--text);
+      border: 1px solid currentColor;
 
       border-radius: 999px;
+
+      font-weight: 700;
+
+      line-height: 1;
+
+      transform: translateY(-1px);
+
+      transition:
+
+        color 0.2s,
+
+        background 0.2s,
+
+        transform 0.2s;
+
+    }
+
+    /* A second, slightly displaced outline gives the pill the imperfect
+
+       lower edge visible in the reference. */
+
+    nav .join-link::before {
+
+      content: "";
+
+      position: absolute;
+
+      inset: -1px;
+
+      z-index: -1;
+
+      border: 1px solid color-mix(in srgb, var(--text) 23%, transparent);
+
+      border-top-color: transparent;
+
+      border-radius: inherit;
+
+      transform: translateY(2px) rotate(-0.7deg) scaleX(0.98);
+
+      pointer-events: none;
+
+    }
+
+    /* The short dark arc under JOIN is part of the reference's character. */
+
+    nav .join-link::after {
+
+      content: "";
+
+      position: absolute;
+
+      left: 50%;
+
+      bottom: -2px;
+
+      width: 25px;
+
+      height: 3px;
+
+      background: currentColor;
+
+      border-radius: 50%;
+
+      transform: translateX(-50%) scaleY(0.24);
+
+      pointer-events: none;
+
+    }
+
+    nav .join-link:hover {
+
+      color: var(--background);
+
+      background: var(--text);
+
+      transform: translateY(-2px);
+
+    }
+
+    nav .join-link:hover::before {
+
+      border-color: color-mix(in srgb, var(--text) 35%, transparent);
+
+      border-top-color: transparent;
+
+    }
+
+    nav .join-link:focus-visible {
+
+      outline: 2px solid var(--red);
+
+      outline-offset: 4px;
 
     }
 
@@ -374,61 +482,129 @@
 
       display: grid;
 
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
 
-      border-top: 1px solid var(--border);
+      gap: 15px;
 
-      border-bottom: 1px solid var(--border);
+      width: 100%;
+
+      margin: 0 auto;
 
     }
 
     .card {
 
-      min-height: 290px;
+      display: flex;
 
-      padding: 32px;
+      flex-direction: column;
 
-      border-right: 1px solid var(--border);
+      min-height: 320px;
 
-      transition: color 0.25s, background 0.25s;
+      padding: 35px;
 
-    }
+      background: var(--surface);
 
-    .card:last-child {
+      border: 1px solid var(--border);
 
-      border-right: 0;
+      transition: border-color 0.25s, transform 0.25s;
 
     }
 
     .card:hover {
 
-      color: var(--background);
+      border-color: var(--red);
 
-      background: var(--text);
+      transform: translateY(-6px);
 
     }
 
-    .card span {
+    .card-heading {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 16px;
+
+      margin-bottom: 17px;
+
+    }
+
+    .card-icon {
+
+      display: grid;
+
+      flex: 0 0 44px;
+
+      width: 44px;
+
+      height: 44px;
+
+      place-items: center;
 
       color: var(--red);
 
-      font-family: monospace;
+      background: color-mix(in srgb, var(--red) 4%, transparent);
+
+      border: 1px solid color-mix(in srgb, var(--red) 45%, transparent);
+
+    }
+
+    .card-icon svg {
+
+      width: 20px;
+
+      height: 20px;
+
+      fill: none;
+
+      stroke: currentColor;
+
+      stroke-width: 1.7;
+
+      stroke-linecap: round;
+
+      stroke-linejoin: round;
 
     }
 
     .card h3 {
 
-      margin-top: 70px;
+      margin: 0;
 
-      font-size: 26px;
+      font-size: 20px;
+
+      line-height: 1;
+
+      letter-spacing: -0.035em;
 
     }
 
     .card p {
 
+      max-width: 29ch;
+
+      margin: 0;
+
       color: var(--muted);
 
-      line-height: 1.6;
+      font-size: 16px;
+
+      line-height: 1.48;
+
+    }
+
+    .card-number {
+
+      margin-top: auto;
+
+      color: var(--muted);
+
+      font-family: monospace;
+
+      font-size: 11px;
+
+      letter-spacing: 0.15em;
 
     }
 
@@ -760,9 +936,7 @@
 
       .card {
 
-        border-right: 0;
-
-        border-bottom: 1px solid var(--border);
+        min-height: 250px;
 
       }
 
@@ -826,9 +1000,9 @@
 
       <a href="#about">About</a>
 
-      <a href="#projects">Projects</a>
+      <a href="#projects">Practice</a>
 
-      <a href="#roles">Roles</a>
+      <a href="#roles">Disciplines</a>
 
       <a class="join-link" href="#join">Join</a>
 
@@ -852,7 +1026,7 @@
 
           <h1>Naval<span>Collective</span></h1>
 
-          <p class="eyebrow">Stockholm · Founded 2026</p>
+          <p class="eyebrow">Stockholm · Naval Architecture · Marine Design</p>
 
         </div>
 
@@ -872,11 +1046,15 @@
 
         <p class="eyebrow">About</p>
 
-        <h2>A collective for people who <em>make things move.</em></h2>
+        <h2>A collective for <em>naval architects.</em></h2>
 
         <p>
 
-          A naval engineering collective developing vessels and systems for maritime applications.
+          We bring naval architects, marine engineers, designers, researchers,
+
+          and industry partners together to develop vessels, yachts, and marine
+
+          systems—from first sketch to sea trials.
 
         </p>
 
@@ -886,31 +1064,99 @@
 
         <article class="card">
 
-          <span>01</span>
+          <div class="card-heading">
 
-          <h3>Build</h3>
+            <span class="card-icon" aria-hidden="true">
 
-          <p>Develop real hardware, software, control systems, and intelligent machines.</p>
+              <svg viewBox="0 0 24 24">
+
+                <circle cx="12" cy="12" r="3"></circle>
+
+                <path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"></path>
+
+              </svg>
+
+            </span>
+
+            <h3>Design</h3>
+
+          </div>
+
+          <p>
+
+            Shape hulls, arrangements, structures, and onboard experiences around
+
+            purpose, performance, and life at sea.
+
+          </p>
+
+          <span class="card-number">01 / 03</span>
 
         </article>
 
         <article class="card">
 
-          <span>02</span>
+          <div class="card-heading">
 
-          <h3>Compete</h3>
+            <span class="card-icon" aria-hidden="true">
 
-          <p>Test your engineering work in demonstrations, challenges, and competitions.</p>
+              <svg viewBox="0 0 24 24">
+
+                <path d="M8 4h8v4c0 3-1.8 5-4 5s-4-2-4-5V4Z"></path>
+
+                <path d="M8 6H4v2c0 2 1.3 3.5 3.5 4M16 6h4v2c0 2-1.3 3.5-3.5 4M12 13v4M8 21h8M9 17h6"></path>
+
+              </svg>
+
+            </span>
+
+            <h3>Develop</h3>
+
+          </div>
+
+          <p>
+
+            Advance ideas through engineering, simulation, prototyping, and
+
+            trials—from early concept to a build-ready solution.
+
+          </p>
+
+          <span class="card-number">02 / 03</span>
 
         </article>
 
         <article class="card">
 
-          <span>03</span>
+          <div class="card-heading">
 
-          <h3>Connect</h3>
+            <span class="card-icon" aria-hidden="true">
 
-          <p>Learn alongside students, researchers, founders, and industry partners.</p>
+              <svg viewBox="0 0 24 24">
+
+                <circle cx="9" cy="8" r="3"></circle>
+
+                <circle cx="17" cy="10" r="2.5"></circle>
+
+                <path d="M3 20v-2c0-3 2.5-5 6-5s6 2 6 5v2M15 14c3 0 5 1.7 5 4v2"></path>
+
+              </svg>
+
+            </span>
+
+            <h3>Connect</h3>
+
+          </div>
+
+          <p>
+
+            Link studios, shipyards, universities, and specialists to exchange
+
+            knowledge and form capable project teams.
+
+          </p>
+
+          <span class="card-number">03 / 03</span>
 
         </article>
 
@@ -922,9 +1168,9 @@
 
       <div class="section-title">
 
-        <p class="eyebrow">Projects</p>
+        <p class="eyebrow">Practice</p>
 
-        <h2>What we <em>build.</em></h2>
+        <h2>From first lines to <em>sea trials.</em></h2>
 
       </div>
 
@@ -934,9 +1180,9 @@
 
           <small>01 / 04</small>
 
-          <h3>Atlas Cell</h3>
+          <h3>Vessel Design</h3>
 
-          <p>A dual-arm robotic workcell that learns manipulation tasks from demonstrations.</p>
+          <p>Concept design and naval architecture for commercial, specialist, and service vessels.</p>
 
         </article>
 
@@ -944,9 +1190,9 @@
 
           <small>02 / 04</small>
 
-          <h3>Pelagic</h3>
+          <h3>Yacht Development</h3>
 
-          <p>An autonomous underwater vehicle for mapping and marine inspection.</p>
+          <p>Integrated development of sailing and motor yachts, from arrangement and performance to systems and detailing.</p>
 
         </article>
 
@@ -954,9 +1200,9 @@
 
           <small>03 / 04</small>
 
-          <h3>Field Unit</h3>
+          <h3>Marine Systems</h3>
 
-          <p>A modular rover combining navigation, perception, and resilient control.</p>
+          <p>Propulsion, energy, control, and onboard systems designed as part of the whole vessel.</p>
 
         </article>
 
@@ -964,9 +1210,9 @@
 
           <small>04 / 04</small>
 
-          <h3>Motion Stack</h3>
+          <h3>Research & Trials</h3>
 
-          <p>Shared simulation, training, tracking, and robot deployment infrastructure.</p>
+          <p>Hydrodynamic studies, digital tools, physical models, prototypes, and testing on the water.</p>
 
         </article>
 
@@ -978,49 +1224,49 @@
 
       <div class="section-title">
 
-        <p class="eyebrow">Roles</p>
+        <p class="eyebrow">Disciplines</p>
 
-        <h2>Find your <em>place.</em></h2>
+        <h2>Bring your expertise <em>aboard.</em></h2>
 
-        <p>Click a role to prefill the application.</p>
+        <p>Choose the field closest to your work.</p>
 
       </div>
 
       <div class="roles">
 
-        <button class="role" data-role="Robotics Engineer">
+        <button class="role" data-role="Naval Architecture">
 
           <span class="role-number">01</span>
 
-          <strong>Robotics Engineer</strong>
+          <strong>Naval Architecture</strong>
 
-          <span class="role-description">Integrate mechanics, sensing, and control.</span>
+          <span class="role-description">Shape hull forms, arrangements, structures, stability, and performance.</span>
 
           <span class="role-team">Engineering</span>
 
         </button>
 
-        <button class="role" data-role="ML Engineer">
+        <button class="role" data-role="Marine Engineering">
 
           <span class="role-number">02</span>
 
-          <strong>ML Engineer</strong>
+          <strong>Marine Engineering</strong>
 
-          <span class="role-description">Build perception and learning systems for robots.</span>
+          <span class="role-description">Integrate propulsion, energy, controls, and onboard systems.</span>
 
           <span class="role-team">Engineering</span>
 
         </button>
 
-        <button class="role" data-role="Partnerships Lead">
+        <button class="role" data-role="Yacht & Industrial Design">
 
           <span class="role-number">03</span>
 
-          <strong>Partnerships Lead</strong>
+          <strong>Yacht & Industrial Design</strong>
 
-          <span class="role-description">Build relationships with companies and laboratories.</span>
+          <span class="role-description">Connect technical requirements with form, function, and life on board.</span>
 
-          <span class="role-team">Operations</span>
+          <span class="role-team">Design</span>
 
         </button>
 
@@ -1032,9 +1278,9 @@
 
       <div class="section-title">
 
-        <p class="eyebrow">Join</p>
+        <p class="eyebrow">Membership</p>
 
-        <h2>Build with <em>us.</em></h2>
+        <h2>Join the <em>collective.</em></h2>
 
       </div>
 
@@ -1062,17 +1308,25 @@
 
         <label>
 
-          Preferred role
+          Primary discipline
 
           <select name="role" id="role-select" required>
 
-            <option value="">Choose a role…</option>
+            <option value="">Choose a discipline…</option>
 
-            <option>Robotics Engineer</option>
+            <option>Naval Architecture</option>
 
-            <option>ML Engineer</option>
+            <option>Marine Engineering</option>
 
-            <option>Partnerships Lead</option>
+            <option>Yacht & Industrial Design</option>
+
+            <option>Research & Academia</option>
+
+            <option>Student</option>
+
+            <option>Industry Partner</option>
+
+            <option>Other</option>
 
           </select>
 
@@ -1080,13 +1334,13 @@
 
         <label>
 
-          Why do you want to join?
+          Tell us about your work, interests, and what you hope to contribute
 
           <textarea name="motivation" required minlength="20"></textarea>
 
         </label>
 
-        <button type="submit">Submit application</button>
+        <button type="submit">Request membership</button>
 
         <p id="form-message" role="status"></p>
 
@@ -1100,31 +1354,31 @@
 
         <p class="eyebrow">FAQ</p>
 
-        <h2>Questions, <em>answered.</em></h2>
+        <h2>About the <em>collective.</em></h2>
 
       </div>
 
       <details>
 
-        <summary>Do I need previous robotics experience?</summary>
+        <summary>Who is the collective for?</summary>
 
-        <p>No. Curiosity and commitment matter more than previous experience.</p>
-
-      </details>
-
-      <details>
-
-        <summary>How much time should I commit?</summary>
-
-        <p>Most members attend one build session and contribute flexible project time each week.</p>
+        <p>Naval architects are at the core. We also welcome marine engineers, yacht and industrial designers, researchers, students, shipyards, and technology partners whose work contributes to developing vessels and marine systems.</p>
 
       </details>
 
       <details>
 
-        <summary>Can non-engineers join?</summary>
+        <summary>What does the collective do?</summary>
 
-        <p>Yes. Communications, operations, partnerships, events, and documentation are also important.</p>
+        <p>We bring people together for collaborative projects, peer reviews, talks, workshops, research, prototyping, and trials across vessels, yachts, and marine systems.</p>
+
+      </details>
+
+      <details>
+
+        <summary>Do I need an active project to join?</summary>
+
+        <p>No. You can join to contribute expertise, develop an idea, find collaborators, or share knowledge with the wider community.</p>
 
       </details>
 
@@ -1136,7 +1390,7 @@
 
     <span>Naval Collective</span>
 
-    <span>Built to move · 2026</span>
+    <span>Naval architecture, developed together · Stockholm 2026</span>
 
   </footer>
 
@@ -1274,311 +1528,538 @@
 
         document.querySelector("#form-message").textContent =
 
-          "Demo complete. Connect this form to your own server or form service.";
+          "Thank you. Your introduction is ready to send once this form is connected.";
 
       });
 
     // A moving point repeatedly draws the inverted Naval Collective triangle.
+
     // Change these values first when you want to tune the animation.
+
     const SETTINGS = Object.freeze({
+
       triangleWidth: 2.28,
+
       triangleHeight: 1.98,
+
       cornerInset: 0.13,
+
       sideBend: 0.32,
+
       twistAmount: 0.13,
-      tracingSpeed: 0.002,
+
+      tracingSpeed: 0.0025,
+
       chaosAmount: 0.06,
+
       curveTension: 0.9,
-      sampleInterval: 15,
+
+      sampleInterval: 10,
+
       maxTrailPoints: innerWidth < 700 ? 1860 : 2925,
+
       fadePower: 1.5,
-      particleSpread: 0.01,
+
+      particleSpread: 0.085,
+
       particleOpacity: 0.16,
+
       particleMinSize: 0.7,
+
       particleMaxSize: 2.1,
+
       particleStep: innerWidth < 700 ? 2 : 1,
+
       glowRadius: innerWidth < 700 ? 34 : 46,
+
       lineColor: "24, 65, 138"
+
     });
 
     const TAU = Math.PI * 2;
+
     const trail = [];
+
     const projectedX = new Float32Array(SETTINGS.maxTrailPoints + 2);
+
     const projectedY = new Float32Array(SETTINGS.maxTrailPoints + 2);
+
     const projectedParticleX = new Float32Array(
+
       SETTINGS.maxTrailPoints + 2
+
     );
+
     const projectedParticleY = new Float32Array(
+
       SETTINGS.maxTrailPoints + 2
+
     );
 
     const initialPoints = SETTINGS.maxTrailPoints;
+
     let pathPosition = 0;
+
     let drawingClock = 0;
+
     let sampleAccumulator = 0;
+
     let width = 1;
+
     let height = 1;
+
     let rotation = 0;
+
     let targetRotation = 0;
+
     let dragging = false;
+
     let previousX = 0;
+
     let previousTime = performance.now();
 
     const mixPoint = (from, to, amount) => [
+
       from[0] + (to[0] - from[0]) * amount,
+
       from[1] + (to[1] - from[1]) * amount
+
     ];
 
     // Repeatable pseudo-randomness: particles stay attached to their trail
+
     // samples instead of jumping to new locations on every animation frame.
+
     function hash(value) {
+
       const sine = Math.sin(value * 12.9898) * 43758.5453;
 
       return sine - Math.floor(sine);
+
     }
 
     function pointToward(from, to, distance) {
+
       const deltaX = to[0] - from[0];
+
       const deltaY = to[1] - from[1];
+
       const length = Math.hypot(deltaX, deltaY) || 1;
 
       return [
+
         from[0] + (deltaX / length) * distance,
+
         from[1] + (deltaY / length) * distance
+
       ];
+
     }
 
     function quadraticPoint(start, control, end, amount) {
+
       const inverse = 1 - amount;
 
       return [
+
         inverse * inverse * start[0] +
+
           2 * inverse * amount * control[0] +
+
           amount * amount * end[0],
+
         inverse * inverse * start[1] +
+
           2 * inverse * amount * control[1] +
+
           amount * amount * end[1]
+
       ];
+
     }
 
     function cubicPoint(start, controlA, controlB, end, amount) {
+
       const inverse = 1 - amount;
 
       return [
+
         inverse ** 3 * start[0] +
+
           3 * inverse * inverse * amount * controlA[0] +
+
           3 * inverse * amount * amount * controlB[0] +
+
           amount ** 3 * end[0],
+
         inverse ** 3 * start[1] +
+
           3 * inverse * inverse * amount * controlA[1] +
+
           3 * inverse * amount * amount * controlB[1] +
+
           amount ** 3 * end[1]
+
       ];
+
     }
 
     function buildRoundedTriangle() {
+
       const halfWidth = SETTINGS.triangleWidth * 0.5;
+
       const top = -SETTINGS.triangleHeight / 3;
+
       const bottom = (SETTINGS.triangleHeight * 2) / 3;
+
       const vertices = [
+
         [-halfWidth, top],
+
         [halfWidth, top],
+
         [0, bottom]
+
       ];
+
       const path = [];
+
       const lineSamples = 170;
+
       const cornerSamples = 42;
 
       vertices.forEach((current, index) => {
+
         const next = vertices[(index + 1) % vertices.length];
+
         const afterNext = vertices[(index + 2) % vertices.length];
+
         const lineStart = pointToward(
+
           current,
+
           next,
+
           SETTINGS.cornerInset
+
         );
+
         const lineEnd = pointToward(
+
           next,
+
           current,
+
           SETTINGS.cornerInset
+
         );
+
         const cornerEnd = pointToward(
+
           next,
+
           afterNext,
+
           SETTINGS.cornerInset
+
         );
+
         const controlA = mixPoint(lineStart, lineEnd, 0.34);
+
         const controlB = mixPoint(lineStart, lineEnd, 0.66);
 
         // Pull the side controls toward the center. This creates the
+
         // three-lobed, open-middle silhouette from the reference.
+
         controlA[0] *= 1 - SETTINGS.sideBend;
+
         controlA[1] *= 1 - SETTINGS.sideBend;
+
         controlB[0] *= 1 - SETTINGS.sideBend;
+
         controlB[1] *= 1 - SETTINGS.sideBend;
 
         for (let i = 0; i < lineSamples; i++) {
+
           path.push(
+
             cubicPoint(
+
               lineStart,
+
               controlA,
+
               controlB,
+
               lineEnd,
+
               i / lineSamples
+
             )
+
           );
+
         }
 
         for (let i = 0; i < cornerSamples; i++) {
+
           path.push(
+
             quadraticPoint(
+
               lineEnd,
+
               next,
+
               cornerEnd,
+
               i / cornerSamples
+
             )
+
           );
+
         }
+
       });
 
       return path;
+
     }
 
     const trianglePath = buildRoundedTriangle();
 
     function pointOnTriangle(position) {
+
       const wrapped = ((position % 1) + 1) % 1;
+
       const exactIndex = wrapped * trianglePath.length;
+
       const index = Math.floor(exactIndex) % trianglePath.length;
+
       const nextIndex = (index + 1) % trianglePath.length;
 
       return mixPoint(
+
         trianglePath[index],
+
         trianglePath[nextIndex],
+
         exactIndex - Math.floor(exactIndex)
+
       );
+
     }
 
     function createTrailPoint(deltaTime) {
+
       pathPosition += deltaTime * SETTINGS.tracingSpeed;
+
       drawingClock += deltaTime * 0.001;
 
       const phase = pathPosition - Math.floor(pathPosition);
+
       const base = pointOnTriangle(phase);
+
       const before = pointOnTriangle(phase - 0.0015);
+
       const after = pointOnTriangle(phase + 0.0015);
+
       const tangentX = after[0] - before[0];
+
       const tangentY = after[1] - before[1];
+
       const tangentLength = Math.hypot(tangentX, tangentY) || 1;
+
       const normalX = -tangentY / tangentLength;
+
       const normalY = tangentX / tangentLength;
+
       const chaos = SETTINGS.chaosAmount;
 
       // Smooth waves create layered imperfections while preserving the logo.
+
       const largeWave = Math.sin(TAU * phase * 3 + drawingClock * 0.47);
+
       const mediumWave = Math.sin(TAU * phase * 8 - drawingClock * 0.31);
+
       const fineWave = Math.cos(TAU * phase * 17 + drawingClock * 0.19);
+
       const normalOffset =
+
         chaos *
+
         (0.72 * largeWave + 0.24 * mediumWave + 0.08 * fineWave);
+
       const breathing = 1 + chaos * 0.90 * Math.sin(drawingClock * 0.23);
+
       const stretchX = 1 + chaos * 0.42 * Math.cos(drawingClock * 0.16);
+
       const stretchY = 1 + chaos * 0.36 * Math.sin(drawingClock * 0.19);
+
       const horizontalDrift = chaos * 0.42 * Math.sin(drawingClock * 0.17);
+
       const verticalDrift = chaos * 0.30 * Math.cos(drawingClock * 0.13);
+
       const skew = chaos * 0.22 * Math.sin(drawingClock * 0.11);
+
       const twist =
+
         SETTINGS.twistAmount * Math.sin(drawingClock * 0.18) +
+
         chaos * 0.28 * Math.sin(drawingClock * 0.47);
 
       const shapedX =
+
         base[0] * breathing * stretchX +
+
         base[1] * skew +
+
         normalX * normalOffset +
+
         horizontalDrift;
+
       const shapedY =
+
         base[1] * breathing * stretchY +
+
         normalY * normalOffset +
+
         verticalDrift;
+
       const twistCosine = Math.cos(twist);
+
       const twistSine = Math.sin(twist);
+
       const lineX = shapedX * twistCosine - shapedY * twistSine;
+
       const lineY = shapedX * twistSine + shapedY * twistCosine;
+
       const seed = pathPosition * 9973.137 + drawingClock * 0.071;
+
       const scatterAngle = hash(seed) * TAU;
+
       const scatterDistance =
+
         Math.pow(hash(seed + 4.17), 1.7) * SETTINGS.particleSpread;
+
       const particleSize =
+
         SETTINGS.particleMinSize +
+
         hash(seed + 9.31) *
+
           (SETTINGS.particleMaxSize - SETTINGS.particleMinSize);
+
       const particleStrength = 0.35 + hash(seed + 14.73) * 0.65;
 
       return [
+
         lineX,
+
         lineY,
+
         lineX + Math.cos(scatterAngle) * scatterDistance,
+
         lineY + Math.sin(scatterAngle) * scatterDistance,
+
         particleSize,
+
         particleStrength
+
       ];
+
     }
 
     function addTrailSample(deltaTime = SETTINGS.sampleInterval) {
+
       trail.push(createTrailPoint(deltaTime));
 
       if (trail.length > SETTINGS.maxTrailPoints) {
+
         trail.shift();
+
       }
+
     }
 
     // Begin with a complete snake trail instead of an empty canvas.
+
     for (let i = 0; i < initialPoints; i++) {
+
       addTrailSample();
+
     }
 
     function resizeCanvas() {
+
       const rectangle = canvas.getBoundingClientRect();
+
       const ratio = Math.min(devicePixelRatio || 1, 2);
 
       width = rectangle.width;
+
       height = rectangle.height;
+
       canvas.width = Math.round(width * ratio);
+
       canvas.height = Math.round(height * ratio);
+
       ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
 
       // These two settings round every visible part of every stroke.
+
       ctx.lineCap = "round";
+
       ctx.lineJoin = "round";
+
     }
 
     function projectTrail(scale, centerX, centerY) {
+
       const cosine = Math.cos(rotation);
+
       const sine = Math.sin(rotation);
 
       trail.forEach((point, index) => {
+
         const rotatedX = point[0] * cosine - point[1] * sine;
+
         const rotatedY = point[0] * sine + point[1] * cosine;
+
         const rotatedParticleX = point[2] * cosine - point[3] * sine;
+
         const rotatedParticleY = point[2] * sine + point[3] * cosine;
 
         projectedX[index] = centerX + rotatedX * scale;
+
         projectedY[index] = centerY + rotatedY * scale;
+
         projectedParticleX[index] = centerX + rotatedParticleX * scale;
+
         projectedParticleY[index] = centerY + rotatedParticleY * scale;
+
       });
+
     }
 
     function draw(time) {
+
       const elapsed = Math.min(40, Math.max(0, time - previousTime));
+
       previousTime = time;
 
       if (!reduceMotion.matches) {
+
         sampleAccumulator += elapsed;
 
         while (sampleAccumulator >= SETTINGS.sampleInterval) {
+
           addTrailSample();
+
           sampleAccumulator -= SETTINGS.sampleInterval;
+
         }
 
       }
@@ -1588,132 +2069,225 @@
       ctx.clearRect(0, 0, width, height);
 
       const opacity = 1 - smoothstep(0.76, 1, heroProgress);
+
       const scale =
+
         Math.min(width, height) *
+
         0.255 *
+
         (1 + heroProgress * 4.8);
+
       const centerX = width * 0.5;
+
       const centerY = height * 0.37;
+
       const color =
+
         root.dataset.theme === "dark"
+
           ? "116, 151, 221"
+
           : SETTINGS.lineColor;
 
       projectTrail(scale, centerX, centerY);
 
       ctx.save();
+
       ctx.lineCap = "round";
+
       ctx.lineJoin = "round";
 
       const lastIndex = Math.max(1, trail.length - 1);
 
       // A field of tiny, stable square samples recreates the reference's
+
       // close-up texture. Each particle shares the snake's continuous fade.
+
       ctx.fillStyle = `rgb(${color})`;
 
       for (
+
         let index = 0;
+
         index < trail.length;
+
         index += SETTINGS.particleStep
+
       ) {
+
         const progress = index / lastIndex;
+
         const smoothAge = progress * progress * (3 - 2 * progress);
+
         const fade = Math.pow(smoothAge, SETTINGS.fadePower);
+
         const point = trail[index];
+
         const particleSize = point[4];
 
         ctx.globalAlpha =
+
           SETTINGS.particleOpacity * point[5] * fade * opacity;
+
         ctx.fillRect(
+
           projectedParticleX[index] - particleSize * 0.5,
+
           projectedParticleY[index] - particleSize * 0.5,
+
           particleSize,
+
           particleSize
+
         );
+
       }
 
       ctx.globalAlpha = 1;
 
       // Give every segment its own age-based opacity. This prevents the
+
       // visible stepping and flicker caused by fading groups of points.
+
       ctx.strokeStyle = `rgb(${color})`;
 
       const controlScale = SETTINGS.curveTension / 6;
 
       for (let index = 0; index < lastIndex; index++) {
+
         const previousIndex = Math.max(0, index - 1);
+
         const nextIndex = index + 1;
+
         const afterIndex = Math.min(lastIndex, index + 2);
+
         const progress = nextIndex / lastIndex;
+
         const smoothAge = progress * progress * (3 - 2 * progress);
+
         const fade = Math.pow(smoothAge, SETTINGS.fadePower);
+
         const controlAX =
+
           projectedX[index] +
+
           (projectedX[nextIndex] - projectedX[previousIndex]) * controlScale;
+
         const controlAY =
+
           projectedY[index] +
+
           (projectedY[nextIndex] - projectedY[previousIndex]) * controlScale;
+
         const controlBX =
+
           projectedX[nextIndex] -
+
           (projectedX[afterIndex] - projectedX[index]) * controlScale;
+
         const controlBY =
+
           projectedY[nextIndex] -
+
           (projectedY[afterIndex] - projectedY[index]) * controlScale;
 
         ctx.globalAlpha = 0.78 * fade * opacity;
+
         ctx.lineWidth = 0.55 + fade * 1.05;
+
         ctx.beginPath();
+
         ctx.moveTo(projectedX[index], projectedY[index]);
+
         ctx.bezierCurveTo(
+
           controlAX,
+
           controlAY,
+
           controlBX,
+
           controlBY,
+
           projectedX[nextIndex],
+
           projectedY[nextIndex]
+
         );
+
         ctx.stroke();
+
       }
 
       ctx.globalAlpha = 1;
 
       const head = trail.length - 1;
+
       if (head >= 0) {
+
         const headX = projectedX[head];
+
         const headY = projectedY[head];
+
         const glowPulse = 0.94 + Math.sin(time * 0.004) * 0.06;
+
         const glowRadius = SETTINGS.glowRadius * glowPulse;
+
         const lampGlow = ctx.createRadialGradient(
+
           headX,
+
           headY,
+
           0,
+
           headX,
+
           headY,
+
           glowRadius
+
         );
 
         lampGlow.addColorStop(0, `rgba(${color}, ${0.34 * opacity})`);
+
         lampGlow.addColorStop(0.22, `rgba(${color}, ${0.20 * opacity})`);
+
         lampGlow.addColorStop(0.58, `rgba(${color}, ${0.065 * opacity})`);
+
         lampGlow.addColorStop(1, `rgba(${color}, 0)`);
 
         // Soft blue lamp circle behind the solid moving point.
+
         ctx.shadowBlur = 0;
+
         ctx.fillStyle = lampGlow;
+
         ctx.beginPath();
+
         ctx.arc(headX, headY, glowRadius, 0, TAU);
+
         ctx.fill();
 
         ctx.shadowColor = `rgba(${color}, ${0.65 * opacity})`;
+
         ctx.shadowBlur = 14;
+
         ctx.fillStyle = `rgba(${color}, ${opacity})`;
+
         ctx.beginPath();
+
         ctx.arc(headX, headY, 3.8, 0, TAU);
+
         ctx.fill();
+
       }
 
       ctx.restore();
+
       requestAnimationFrame(draw);
+
     }
 
     canvas.addEventListener("pointerdown", event => {
